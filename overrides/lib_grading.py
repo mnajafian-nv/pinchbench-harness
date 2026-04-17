@@ -189,6 +189,12 @@ def _grade_llm_judge(
     skill_dir: Optional[Path] = None,
     verbose: bool = False,
 ) -> GradeResult:
+    _API_PREFIXES = ("nvidia-inference/", "openrouter/", "anthropic/", "openai/")
+    if judge_backend == "openclaw" and any(judge_model.startswith(p) for p in _API_PREFIXES):
+        judge_backend = "api"
+        if verbose:
+            logger.info("   [VERBOSE] Auto-switched judge to direct API (model=%s)", judge_model)
+
     transcript = execution_result.get("transcript", [])
     execution_status = execution_result.get("status", "unknown")
 

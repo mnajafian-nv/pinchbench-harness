@@ -112,7 +112,7 @@ run_model() {
 
     MODEL="$model" \
     JUDGE="$JUDGE" \
-    RUNS=1 \
+    RUNS="${RUNS:-3}" \
     CONCURRENCY="$CONCURRENCY" \
     PROJECT_NAME="$project" \
     SUITE="$suite_arg" \

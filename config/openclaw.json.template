@@ -1,0 +1,82 @@
+{
+  "models": {
+    "providers": {
+      "nvidia-inference": {
+        "baseUrl": "https://inference-api.nvidia.com/v1",
+        "apiKey": "__NVIDIA_API_KEY__",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "aws/anthropic/claude-opus-4-5",
+            "name": "Claude Opus 4.5 (NVIDIA Inference)",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "azure/anthropic/claude-sonnet-4-6",
+            "name": "Claude Sonnet 4.6 (NVIDIA Inference, Judge)",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "nvidia-inference/aws/anthropic/claude-opus-4-5"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      }
+    },
+    "list": [
+      { "id": "main" }
+    ]
+  },
+  "plugins": {
+    "entries": {
+      "nemo-flow": {
+        "enabled": true,
+        "config": {
+          "wrapping": { "tools": true, "llm": true },
+          "atif": { "enabled": true },
+          "telemetry": {
+            "otel": { "enabled": false },
+            "openInference": {
+              "enabled": true,
+              "endpoint": "http://127.0.0.1:4317",
+              "serviceName": "openclaw-agent",
+              "transport": "grpc",
+              "instrumentationScope": "nemo-flow-openclaw",
+              "resourceAttributes": {
+                "openinference.project.name": "__PHOENIX_PROJECT_NAME__"
+              }
+            }
+          }
+        }
+      }
+    },
+    "installs": {
+      "nemo-flow": {
+        "source": "path",
+        "sourcePath": "__NEMOFLOW_DIR__/third_party/openclaw/extensions/nemo-flow",
+        "installPath": "__HOME__/.openclaw/extensions/nemo-flow",
+        "version": "2026.3.14"
+      }
+    }
+  },
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "__GATEWAY_TOKEN__"
+    }
+  }
+}

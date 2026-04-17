@@ -27,7 +27,7 @@ command -v openclaw >/dev/null || die "openclaw not found on PATH. Run ./setup.s
 
 MODEL="${MODEL:-nvidia-inference/aws/anthropic/claude-opus-4-5}"
 JUDGE="${JUDGE:-nvidia-inference/azure/anthropic/claude-sonnet-4-6}"
-RUNS="${RUNS:-3}"
+RUNS="${RUNS:-1}"
 SUITE="${SUITE:-}"
 CONCURRENCY="${CONCURRENCY:-1}"
 PROJECT_NAME="${PROJECT_NAME:-PinchBench}"

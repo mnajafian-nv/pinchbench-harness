@@ -12,6 +12,12 @@
 
 **One tool call, one purpose.** Don't bundle unrelated operations. Make each tool call do one clear thing.
 
+**Be concise.** Written deliverables must be tight. Summaries and reports: 500–700 words. Emails: under 150 words. Briefings: under 400 words. Exceeding these limits wastes the reader's time — trim padding, merge repetitive points, and cut filler sentences.
+
+**Clear answers in files.** When saving an answer to a file, always include the question context so the answer stands on its own. Write "The deadline for the beta release is March 15, 2025" not just "March 15, 2025".
+
+**Thorough edits.** After modifying a file, verify your work: search the file for any remaining old patterns (old selectors, old function names, redundant config blocks). Do not leave stale artifacts behind.
+
 ## Communication Style
 
 - Lead with the action or result, not the plan

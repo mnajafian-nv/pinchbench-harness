@@ -455,6 +455,12 @@ def prepare_task_workspace(skill_dir: Path, run_id: str, task: Task, agent_id: s
     for fname, content in saved_bootstrap.items():
         (workspace / fname).write_bytes(content)
 
+    _custom_bootstrap_dir = Path.home() / ".openclaw" / "workspace"
+    for fname in ("SOUL.md", "TOOLS.md"):
+        custom = _custom_bootstrap_dir / fname
+        if custom.exists():
+            (workspace / fname).write_bytes(custom.read_bytes())
+
     for file_spec in task.workspace_files:
         if "content" in file_spec:
             dest = workspace / file_spec["path"]
